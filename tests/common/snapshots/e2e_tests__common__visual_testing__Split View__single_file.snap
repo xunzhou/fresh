@@ -30,5 +30,4 @@ expression: "&screen_text"
                                                                                                                        █
                                                                                                                        █
                                                                                                                        █
-                                                                                                                       █
-file1.txt | Ln 0, Col 0 | Opened file1.txt                                                                 Help: Ctrl+/
+file1.txt | Ln 0, Col 0 | Opened file1.txt                                                              Palette: Ctrl+P

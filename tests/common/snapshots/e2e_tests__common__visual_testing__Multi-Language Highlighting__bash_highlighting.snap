@@ -3,7 +3,7 @@ source: tests/common/visual_testing.rs
 expression: "&screen_text"
 ---
  File   Edit   View   Selection   Go   Help                                     
- hello.rs   hello.py   hello.js   hello.ts   hello.html   hello.css   hello.c   
+<ello.go   hello.json   hello.java   hello.cs   hello.php   hello.rb   hello.sh 
     1 │ #!/bin/bash                                                            █
     2 │                                                                        █
     3 │ function greet() {                                                     █
@@ -30,5 +30,4 @@ expression: "&screen_text"
                                                                                █
                                                                                █
                                                                                █
-                                                                               █
-hello.sh | Ln 0, Col 0 | Opened hello.sh                           Help: Ctrl+/
+hello.sh | Ln 0, Col 0 | Opened hello.sh                        Palette: Ctrl+P

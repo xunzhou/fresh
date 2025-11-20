@@ -3,7 +3,7 @@ source: tests/common/visual_testing.rs
 expression: "&screen_text"
 ---
  File   Edit   View   Selection   Go   Help                                     
- hello.rs   hello.py   hello.js   hello.ts   hello.html   hello.css   hello.c   
+<ello.css   hello.c   hello.cpp   hello.go   hello.json   hello.java   hello.cs 
     1 │ using System;                                                          █
     2 │                                                                        █
     3 │ class Hello {                                                          █
@@ -30,5 +30,4 @@ expression: "&screen_text"
                                                                                █
                                                                                █
                                                                                █
-                                                                               █
-hello.cs | Ln 0, Col 0 | Opened hello.cs                           Help: Ctrl+/
+hello.cs | Ln 0, Col 0 | Opened hello.cs                        Palette: Ctrl+P

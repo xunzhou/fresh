@@ -16,7 +16,6 @@ expression: "&screen_text"
                                                                                                                        █
                                                                                                                        █
                                                                                                                        █
-                                                                                                                       █
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
  file1.txt   file2.txt                                                                                                  
     1 │ Content of file 2                                                                                              █
@@ -31,4 +30,4 @@ expression: "&screen_text"
                                                                                                                        █
                                                                                                                        █
                                                                                                                        █
-file2.txt | Ln 0, Col 0 | Opened file2.txt                                                                 Help: Ctrl+/
+file2.txt | Ln 0, Col 0 | Opened file2.txt                                                              Palette: Ctrl+P

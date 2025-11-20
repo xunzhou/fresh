@@ -3,7 +3,7 @@ source: tests/common/visual_testing.rs
 expression: "&screen_text"
 ---
  File   Edit   View   Selection   Go   Help                                     
- hello.rs   hello.py   hello.js   hello.ts   hello.html   hello.css   hello.c   
+< hello.js   hello.ts   hello.html   hello.css   hello.c   hello.cpp   hello.go 
     1 │ package main                                                           █
     2 │                                                                        █
     3 │ import "fmt"                                                           █
@@ -30,5 +30,4 @@ expression: "&screen_text"
                                                                                █
                                                                                █
                                                                                █
-                                                                               █
-hello.go | Ln 0, Col 0 | Opened hello.go                           Help: Ctrl+/
+hello.go | Ln 0, Col 0 | Opened hello.go                        Palette: Ctrl+P

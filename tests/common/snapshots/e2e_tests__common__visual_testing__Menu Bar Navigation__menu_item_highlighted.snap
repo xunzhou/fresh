@@ -5,6 +5,8 @@ expression: "&screen_text"
  File   Edit   View   Selection   Go   Help                                     
  [No Name]*   ┌──────────────────────────────────────┐                          
     1 │ Hello,│ Toggle File Explorer           Ctrl+B│                         █
+              │ Set Background...                    │                         █
+              │ Set Background Blend...              │                         █
               │ ─────────────────────────────────────│                         █
               │ Split Horizontal                Alt+H│                         █
               │ Split Vertical                  Alt+V│                         █
@@ -22,7 +24,4 @@ expression: "&screen_text"
                                                                                █
                                                                                █
                                                                                █
-                                                                               █
-                                                                               █
-                                                                               █
-[No Name] [+] | Ln 0, Col 13                                       Help: Ctrl+/
+[No Name] [+] | Ln 0, Col 13                                    Palette: Ctrl+P

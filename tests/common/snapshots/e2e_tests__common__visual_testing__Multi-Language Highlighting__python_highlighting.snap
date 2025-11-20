@@ -30,5 +30,4 @@ expression: "&screen_text"
                                                                                █
                                                                                █
                                                                                █
-                                                                               █
-hello.py | Ln 0, Col 0 | Opened hello.py                           Help: Ctrl+/
+hello.py | Ln 0, Col 0 | Opened hello.py                        Palette: Ctrl+P

@@ -30,5 +30,4 @@ expression: "&screen_text"
                                                                                █
                                                                                █
                                                                                █
-                                                                               █
-hello.rs | Ln 0, Col 0 | Opened hello.rs                           Help: Ctrl+/
+hello.rs | Ln 0, Col 0 | Opened hello.rs                        Palette: Ctrl+P

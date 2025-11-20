@@ -16,7 +16,6 @@ expression: "&screen_text"
                                                                                                                        █
                                                                                                                        █
                                                                                                                        █
-                                                                                                                       █
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
  file1.txt                                                                                                              
     1 │ Content of file 1                                                                                              █
@@ -31,4 +30,4 @@ expression: "&screen_text"
                                                                                                                        █
                                                                                                                        █
                                                                                                                        █
-file1.txt | Ln 0, Col 0 | Split pane horizontally                                                          Help: Ctrl+/
+file1.txt | Ln 0, Col 0 | Split pane horizontally                                                       Palette: Ctrl+P

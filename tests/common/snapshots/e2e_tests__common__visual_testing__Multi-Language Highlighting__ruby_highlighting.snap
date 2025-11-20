@@ -3,7 +3,7 @@ source: tests/common/visual_testing.rs
 expression: "&screen_text"
 ---
  File   Edit   View   Selection   Go   Help                                     
- hello.rs   hello.py   hello.js   hello.ts   hello.html   hello.css   hello.c   
+<llo.cpp   hello.go   hello.json   hello.java   hello.cs   hello.php   hello.rb 
     1 │ #!/usr/bin/env ruby                                                    █
     2 │                                                                        █
     3 │ def greet(name)                                                        █
@@ -30,5 +30,4 @@ expression: "&screen_text"
                                                                                █
                                                                                █
                                                                                █
-                                                                               █
-hello.rb | Ln 0, Col 0 | Opened hello.rb                           Help: Ctrl+/
+hello.rb | Ln 0, Col 0 | Opened hello.rb                        Palette: Ctrl+P
