@@ -2143,11 +2143,15 @@ impl Editor {
                 // Dismiss hover/signature help popups on scroll
                 self.dismiss_transient_popups();
                 self.handle_mouse_scroll(col, row, -3)?;
+                // Sync viewport from SplitViewState to EditorState so rendering sees the scroll
+                self.sync_split_view_state_to_editor_state();
             }
             MouseEventKind::ScrollDown => {
                 // Dismiss hover/signature help popups on scroll
                 self.dismiss_transient_popups();
                 self.handle_mouse_scroll(col, row, 3)?;
+                // Sync viewport from SplitViewState to EditorState so rendering sees the scroll
+                self.sync_split_view_state_to_editor_state();
             }
             _ => {
                 // Ignore other mouse events for now
