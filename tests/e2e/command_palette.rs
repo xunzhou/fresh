@@ -770,3 +770,49 @@ fn test_command_palette_shortcuts_alignment() {
         screen
     );
 }
+
+/// Test that "Show Keyboard Shortcuts" command actually shows keyboard shortcuts (issue #192)
+/// Previously this would just show a fallback message because it relied on a non-existent plugin hook
+#[test]
+fn test_show_keyboard_shortcuts_command() {
+    use crossterm::event::{KeyCode, KeyModifiers};
+    let mut harness = EditorTestHarness::new(100, 30).unwrap();
+
+    // Trigger the command palette
+    harness
+        .send_key(KeyCode::Char('p'), KeyModifiers::CONTROL)
+        .unwrap();
+    harness.render().unwrap();
+
+    // Type to filter for "Show Keyboard Shortcuts"
+    harness.type_text("keyboard").unwrap();
+    harness.render().unwrap();
+
+    // Should see the command in the palette
+    harness.assert_screen_contains("Show Keyboard Shortcuts");
+
+    // Execute the command
+    harness.send_key(KeyCode::Enter, KeyModifiers::NONE).unwrap();
+    harness.render().unwrap();
+
+    let screen = harness.screen_to_string();
+    println!("Screen after Show Keyboard Shortcuts:\n{}", screen);
+
+    // ISSUE #192: The command should actually show keyboard shortcuts, not just a fallback message
+    // The keyboard shortcuts should be displayed in a buffer or popup
+    // We should see actual keybindings like Ctrl+S, Ctrl+O, etc.
+    let shows_keybindings = screen.contains("Ctrl+S")
+        || screen.contains("Ctrl+O")
+        || screen.contains("Ctrl+P")
+        || screen.contains("Save")
+        || screen.contains("Keyboard Shortcuts"); // Buffer title
+
+    // Should NOT show the fallback "not available" message
+    let shows_fallback = screen.contains("not available") || screen.contains("plugins not loaded");
+
+    assert!(
+        shows_keybindings && !shows_fallback,
+        "Show Keyboard Shortcuts command should display actual keybindings, not a fallback message. Screen:\n{}",
+        screen
+    );
+}

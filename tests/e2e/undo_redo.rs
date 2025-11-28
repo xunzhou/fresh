@@ -141,3 +141,64 @@ fn test_undo_redo_with_mixed_actions() {
         .unwrap();
     harness.assert_buffer_content("a");
 }
+
+/// Test that undo to save point correctly marks buffer as not modified (issue #191)
+///
+/// The issue was that there's an extra undo step which moves cursor to top of screen
+/// before the buffer becomes not-dirty. The buffer should become not-dirty exactly
+/// when we undo back to the saved state.
+#[test]
+fn test_undo_to_save_point_marks_buffer_unmodified() {
+    use crate::common::fixtures::TestFixture;
+
+    // Create a test file
+    let fixture = TestFixture::new("test_undo_save.txt", "initial").unwrap();
+    let mut harness = EditorTestHarness::new(80, 24).unwrap();
+
+    // Open the file
+    harness.open_file(&fixture.path).unwrap();
+    harness.assert_buffer_content("initial");
+
+    // After opening a file from disk, it should NOT be modified
+    assert!(
+        !harness.editor().active_state().buffer.is_modified(),
+        "Buffer should not be modified after opening"
+    );
+
+    // Type a single character to make a minimal change
+    harness.send_key(KeyCode::End, KeyModifiers::NONE).unwrap();
+    harness.type_text("X").unwrap();
+    harness.assert_buffer_content("initialX");
+
+    // Now buffer should be modified
+    assert!(
+        harness.editor().active_state().buffer.is_modified(),
+        "Buffer should be modified after typing"
+    );
+
+    // Undo the single change
+    harness
+        .send_key(KeyCode::Char('z'), KeyModifiers::CONTROL)
+        .unwrap();
+
+    // Content should be back to "initial"
+    harness.assert_buffer_content("initial");
+
+    // ISSUE #191: Buffer should be NOT modified immediately when content matches saved state
+    // There should NOT be an extra undo step needed
+    let is_modified = harness.editor().active_state().buffer.is_modified();
+    let cursor_pos = harness.editor().active_state().cursors.primary().position;
+
+    assert!(
+        !is_modified,
+        "Buffer should be NOT modified after undoing to saved state. \
+         There should not be an extra undo step needed to reach unmodified state."
+    );
+
+    // Cursor should be within the text bounds, not at some unexpected position like 0
+    assert!(
+        cursor_pos <= 7,
+        "Cursor should be within the text bounds, not at position {} (top of screen)",
+        cursor_pos
+    );
+}

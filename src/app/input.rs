@@ -643,12 +643,7 @@ impl Editor {
                 self.open_help_manual();
             }
             Action::ShowKeyboardShortcuts => {
-                let bindings = self.keybindings.get_all_bindings();
-                self.dispatch_plugin_hook(
-                    "keyboard_shortcuts",
-                    HookArgs::KeyboardShortcuts { bindings },
-                    "Keyboard shortcuts not available (plugins not loaded)",
-                );
+                self.open_keyboard_shortcuts();
             }
             Action::CommandPalette => {
                 // Toggle command palette: close if already open, otherwise open it

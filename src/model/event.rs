@@ -549,9 +549,27 @@ impl EventLog {
     }
 
     /// Check if the buffer is at the saved position (not modified)
-    /// Returns true if we're at the same event log position as when last saved
+    /// Returns true if we're at the saved position OR if all events between
+    /// saved_at_index and current_index are readonly (don't modify buffer content)
     pub fn is_at_saved_position(&self) -> bool {
-        self.saved_at_index == Some(self.current_index)
+        match self.saved_at_index {
+            None => false,
+            Some(saved_idx) if saved_idx == self.current_index => true,
+            Some(saved_idx) => {
+                // Check if all events between saved position and current position
+                // are readonly (don't modify buffer content)
+                let (start, end) = if saved_idx < self.current_index {
+                    (saved_idx, self.current_index)
+                } else {
+                    (self.current_index, saved_idx)
+                };
+
+                // All events in range [start, end) must be readonly
+                self.entries[start..end]
+                    .iter()
+                    .all(|entry| !entry.event.modifies_buffer())
+            }
+        }
     }
 
     /// Enable streaming events to a file

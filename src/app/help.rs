@@ -8,3 +8,6 @@ pub const HELP_MANUAL_CONTENT: &str = include_str!("../../docs/fresh.txt");
 
 /// The name of the help manual buffer
 pub const HELP_MANUAL_BUFFER_NAME: &str = "*Fresh Manual*";
+
+/// The name of the keyboard shortcuts buffer
+pub const KEYBOARD_SHORTCUTS_BUFFER_NAME: &str = "*Keyboard Shortcuts*";
