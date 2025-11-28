@@ -3122,6 +3122,18 @@ impl TypeScriptRuntime {
             .map(|v| !v.is_empty())
             .unwrap_or(false)
     }
+
+    /// Send a status message to the editor UI
+    pub fn send_status(&mut self, message: String) {
+        let op_state = self.js_runtime.op_state();
+        let op_state = op_state.borrow();
+        if let Some(runtime_state) = op_state.try_borrow::<Rc<RefCell<TsRuntimeState>>>() {
+            let runtime_state = runtime_state.borrow();
+            let _ = runtime_state
+                .command_sender
+                .send(PluginCommand::SetStatus { message });
+        }
+    }
 }
 
 // === TypeScript Plugin Manager ===

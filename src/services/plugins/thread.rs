@@ -596,8 +596,11 @@ async fn handle_request(
 
         PluginRequest::RunHook { hook_name, args } => {
             // Fire-and-forget hook execution
-            if let Err(e) = run_hook_internal_rc(runtime, &hook_name, &args).await {
-                tracing::error!("Error running hook '{}': {}", hook_name, e);
+            if let Err(e) = run_hook_internal_rc(Rc::clone(&runtime), &hook_name, &args).await {
+                let error_msg = format!("Plugin error in '{}': {}", hook_name, e);
+                tracing::error!("{}", error_msg);
+                // Surface the error to the UI
+                runtime.borrow_mut().send_status(error_msg);
             }
         }
 
