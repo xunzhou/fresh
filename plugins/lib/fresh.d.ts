@@ -140,12 +140,6 @@ interface TsBufferSavedDiff {
   line_ranges?: [number, number][] | null;
 }
 
-/** Line diff result for plugins */
-interface TsLineDiff {
-  equal: boolean;
-  changed_lines: [number, number][];
-}
-
 /** Selection range */
 interface SelectionRange {
   /** Start byte position */
@@ -430,8 +424,6 @@ interface EditorAPI {
   isProcessRunning(#[bigint] process_id: number): boolean;
   /** Compute syntax highlighting for a buffer range */
   getHighlights(buffer_id: number, start: number, end: number): Promise<TsHighlightSpan[]>;
-  /** Get the byte offset of a line in a buffer */
-  getLineByteOffset(buffer_id: number, line: number): number;
   /** Get diff vs last saved snapshot for a buffer */
   getBufferSavedDiff(buffer_id: number): TsBufferSavedDiff | null;
   /**
@@ -709,8 +701,6 @@ interface EditorAPI {
   delay(#[bigint] ms: number): Promise<[]>;
   /** Find a buffer ID by its file path */
   findBufferByPath(path: string): number;
-  /** Compute line diff between two strings */
-  diffLines(original: string, modified: string): TsLineDiff;
   /**
    * Start a prompt with pre-filled initial value
    * @param label - Label to display (e.g., "Git grep: ")

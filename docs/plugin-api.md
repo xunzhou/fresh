@@ -116,17 +116,6 @@ interface TsBufferSavedDiff {
 }
 ```
 
-### TsLineDiff
-
-Line diff result for plugins
-
-```typescript
-interface TsLineDiff {
-  equal: boolean;
-  changed_lines: [number, number][];
-}
-```
-
 ### SelectionRange
 
 Selection range
@@ -599,21 +588,6 @@ getHighlights(buffer_id: number, start: number, end: number): Promise<TsHighligh
 | `buffer_id` | `number` | - |
 | `start` | `number` | - |
 | `end` | `number` | - |
-
-#### `getLineByteOffset`
-
-Get the byte offset of a line in a buffer
-
-```typescript
-getLineByteOffset(buffer_id: number, line: number): number
-```
-
-**Parameters:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `buffer_id` | `number` | - |
-| `line` | `number` | - |
 
 #### `getBufferSavedDiff`
 
@@ -1142,21 +1116,6 @@ findBufferByPath(path: string): number
 | Name | Type | Description |
 |------|------|-------------|
 | `path` | `string` | - |
-
-#### `diffLines`
-
-Compute line diff between two strings
-
-```typescript
-diffLines(original: string, modified: string): TsLineDiff
-```
-
-**Parameters:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `original` | `string` | - |
-| `modified` | `string` | - |
 
 #### `startPromptWithInitial`
 
